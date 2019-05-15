@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户信息</title>
+<!-- 代码有毒 -->
+<!-- 引入外部js,写法 <script></script>必须成对,如果用<script/>导致后面的js报错xxx is not defined-->
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script>
+	//获取百度授权用户信息
+	function userInfo() {
+		$.ajax({
+			url : "/user/getInfo",
+			method : "GET",
+			success : function(result) {
+				$("#user_info").html("<strong>" + result + "</strong>");
+			},
+			error : function(result) {
+				$("#user_info").html("<strong>" + result + "</strong>");
+			}
+		});
+	}
+	//获取百度授权用户信息
+	function remove() {
+		$.ajax({
+			url : "/user/removeAuth",
+			method : "GET",
+			success : function(result) {
+				$("#user_info").html("<strong>" + result + "</strong>");
+			},
+			error : function(result) {
+				$("#user_info").html("<strong>" + result + "</strong>");
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div>
+		<button onclick="userInfo()" type="button">获取百度授权用户信息</button>
+	</div>
+	<div id="user_info"></div>
+	<div>
+		<button onclick="remove()" type="button">取消百度授权</button>
+	</div>
+</body>
+</html>
