@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="components/core.js"></script>
+<script type="text/javascript" src="components/lib-typedarrays.js"></script>
+<script type="text/javascript" src="components/sha1.js"></script>
+<script type="text/javascript" src="components/hmac.js"></script>
+<script type="text/javascript" src="components/pbkdf2.js"></script>
+<script type="text/javascript">
+//引入的js顺序不能变
+	function generateKey() {
+ 		var salt = CryptoJS.enc.Utf8.parse("aisinozx"); //盐
+		var password = document.getElementById("pw").value;//获取密码
+		var mi = CryptoJS.PBKDF2(password, salt, {
+			keySize : 4, //对应的16进制字符串长度为32
+			iterations : 1024  //hash的次数,越大耗时越长,结果越复杂,最大integer.MAX-128
+		}); 
+		document.getElementById("key").value = mi;
+		document.getElementById("salt").value = salt;
+	}
+</script>
+</head>
+<body>
+	<div>
+		密码 <input type="text" id="pw">
+		<button onclick="generateKey()">pbkdf</button>
+	</div>
+	<br />
+	<div>
+		结果 <input type="text" id="key" size="32">
+	</div>
+	<br />
+	<div>
+		salt <input type="text" id="salt">
+	</div>
+	<br />
+</body>
+</html>
