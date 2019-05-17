@@ -19,7 +19,7 @@ public class SecurityUtil {
 			return null;
 		}
 		byte[] salt = "aisinozx".getBytes();
-		KeySpec spec = new PBEKeySpec("1qaz2wsx".toCharArray(), salt, 1024, 128);
+		KeySpec spec = new PBEKeySpec(src.toCharArray(), salt, 1024, 128);
 		byte[] hash = null;
 		try {
 			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
